@@ -844,9 +844,6 @@ Possible future improvements include:
 
 # 📹 Demo
 
-A 2–3 minute video demonstrating the application is available here:
-
-**YouTube:** `<ADD_YOUR_YOUTUBE_VIDEO_LINK>`
 
 The demo covers:
 
