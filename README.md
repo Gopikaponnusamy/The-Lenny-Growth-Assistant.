@@ -466,7 +466,7 @@ Install the following before running the application:
 # 1. Clone the Repository
 
 ```bash
-git clone <YOUR_GITHUB_REPOSITORY_URL>
+
 cd lenny-growth-assistant
 ```
 
