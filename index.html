@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Lenny Growth Assistant</title>
+
+    <!-- Markdown -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- =========================================
+         SIDEBAR
+    ========================================== -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-top">
+
+            <!-- Logo -->
+
+            <div class="brand">
+
+                <div class="brand-logo">
+                    L
+                </div>
+
+                <div class="brand-text">
+
+                    <h2>Lenny</h2>
+
+                    <span>Growth Assistant</span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Close button -->
+
+            <button
+                class="close-sidebar"
+                onclick="toggleSidebar()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <!-- New Chat -->
+
+        <button
+            class="new-chat-btn"
+            onclick="createNewChat()"
+        >
+
+            <span class="new-chat-icon">
+                +
+            </span>
+
+            <span>
+                New Chat
+            </span>
+
+        </button>
+
+
+        <!-- Search -->
+
+        <div class="chat-search">
+
+            <span class="search-icon">
+                ⌕
+            </span>
+
+            <input
+                type="text"
+                id="searchChats"
+                placeholder="Search chats..."
+                oninput="searchChats()"
+            >
+
+        </div>
+
+
+        <!-- Chat History -->
+
+        <div class="history-container">
+
+            <div class="history-heading">
+
+                <span>
+                    Recent Chats
+                </span>
+
+            </div>
+
+
+            <div
+                id="chatHistory"
+                class="chat-history"
+            >
+
+                <!-- Sessions loaded by app.js -->
+
+            </div>
+
+        </div>
+
+
+        <!-- Sidebar Bottom -->
+
+        <div class="sidebar-bottom">
+
+            <div class="knowledge-card">
+
+                <div class="knowledge-icon">
+                    ✦
+                </div>
+
+                <div class="knowledge-info">
+
+                    <strong>
+                        Lenny's Knowledge Base
+                    </strong>
+
+                    <span>
+                        Podcast transcripts connected
+                    </span>
+
+                </div>
+
+                <div class="status-dot"></div>
+
+            </div>
+
+
+            <div class="sidebar-footer">
+
+                <span>
+                    Lenny Growth OS
+                </span>
+
+                <span>
+                    v1.0
+                </span>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================================
+         MAIN APPLICATION
+    ========================================== -->
+
+    <main class="main">
+
+        <!-- =====================================
+             TOP BAR
+        ====================================== -->
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button
+                    class="menu-btn"
+                    onclick="toggleSidebar()"
+                >
+                    ☰
+                </button>
+
+
+                <div class="mobile-brand">
+
+                    <div class="mobile-logo">
+                        L
+                    </div>
+
+                    <span>
+                        Lenny Growth
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="topbar-center">
+
+                <h1>
+                    Lenny Growth Assistant
+                </h1>
+
+                <span>
+                    Product • Growth • Startups
+                </span>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <div class="connection-status">
+
+                    <span class="online-dot"></span>
+
+                    <span>
+                        Ollama Connected
+                    </span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =====================================
+             WORKSPACE
+        ====================================== -->
+
+        <div class="workspace">
+
+            <!-- =================================
+                 CHAT SECTION
+            ================================== -->
+
+            <section
+                class="chat-section"
+                id="chatSection"
+            >
+
+
+                <!-- WELCOME -->
+
+                <div
+                    class="welcome-screen"
+                    id="welcomeScreen"
+                >
+
+                    <div class="welcome-icon">
+                        L
+                    </div>
+
+
+                    <h2>
+                        How can I help you grow?
+                    </h2>
+
+
+                    <p>
+                        Ask questions about product management,
+                        startup growth, product-market fit,
+                        and strategies from Lenny's Podcast.
+                    </p>
+
+
+                    <!-- Suggestions -->
+
+                    <div class="suggestions">
+
+                        <button
+                            class="suggestion-card"
+                            onclick="useSuggestion(this)"
+                        >
+
+                            <div class="suggestion-icon">
+                                🚀
+                            </div>
+
+                            <div class="suggestion-content">
+
+                                <strong>
+                                    Product-Market Fit
+                                </strong>
+
+                                <span>
+                                    How do successful startups
+                                    achieve product-market fit?
+                                </span>
+
+                            </div>
+
+                            <span class="suggestion-arrow">
+                                →
+                            </span>
+
+                        </button>
+
+
+                        <button
+                            class="suggestion-card"
+                            onclick="useSuggestion(this)"
+                        >
+
+                            <div class="suggestion-icon">
+                                👥
+                            </div>
+
+                            <div class="suggestion-content">
+
+                                <strong>
+                                    First Customers
+                                </strong>
+
+                                <span>
+                                    How should a startup find
+                                    its first 100 customers?
+                                </span>
+
+                            </div>
+
+                            <span class="suggestion-arrow">
+                                →
+                            </span>
+
+                        </button>
+
+
+                        <button
+                            class="suggestion-card"
+                            onclick="useSuggestion(this)"
+                        >
+
+                            <div class="suggestion-icon">
+                                📈
+                            </div>
+
+                            <div class="suggestion-content">
+
+                                <strong>
+                                    Startup Growth
+                                </strong>
+
+                                <span>
+                                    What are the best strategies
+                                    for startup growth?
+                                </span>
+
+                            </div>
+
+                            <span class="suggestion-arrow">
+                                →
+                            </span>
+
+                        </button>
+
+
+                        <button
+                            class="suggestion-card"
+                            onclick="useSuggestion(this)"
+                        >
+
+                            <div class="suggestion-icon">
+                                ✍️
+                            </div>
+
+                            <div class="suggestion-content">
+
+                                <strong>
+                                    Create Content
+                                </strong>
+
+                                <span>
+                                    Write an essay about
+                                    product-market fit.
+                                </span>
+
+                            </div>
+
+                            <span class="suggestion-arrow">
+                                →
+                            </span>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================
+                     CHAT MESSAGES
+                ================================== -->
+
+                <div
+                    id="messages"
+                    class="messages"
+                >
+
+                    <!-- Messages added by app.js -->
+
+                </div>
+
+
+                <!-- =================================
+                     TYPING INDICATOR
+                ================================== -->
+
+                <div
+                    id="typingIndicator"
+                    class="typing-indicator hidden"
+                >
+
+                    <div class="message-avatar assistant-avatar">
+                        L
+                    </div>
+
+                    <div class="typing-box">
+
+                        <span></span>
+                        <span></span>
+                        <span></span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================
+                     INPUT AREA
+                ================================== -->
+
+                <div class="input-area">
+
+                    <div class="input-box">
+
+                        <textarea
+                            id="messageInput"
+                            rows="1"
+                            placeholder="Ask Lenny about product, growth or startups..."
+                            onkeydown="handleKeyDown(event)"
+                        ></textarea>
+
+
+                        <div class="input-toolbar">
+
+                            <div class="input-hint">
+
+                                <span class="sparkle">
+                                    ✦
+                                </span>
+
+                                <span>
+                                    Grounded in Lenny's Podcast transcripts
+                                </span>
+
+                            </div>
+
+
+                            <button
+                                id="sendButton"
+                                class="send-button"
+                                onclick="sendMessage()"
+                                title="Send message"
+                            >
+
+                                ↑
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="input-footer">
+
+                        Lenny Growth Assistant can make mistakes.
+                        Verify important information.
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================
+                 ARTIFACT PANEL
+            ================================== -->
+
+            <aside
+                id="artifactPanel"
+                class="artifact-panel hidden"
+            >
+
+                <!-- Artifact Header -->
+
+                <div class="artifact-header">
+
+                    <div class="artifact-heading">
+
+                        <span class="artifact-label">
+                            ARTIFACT
+                        </span>
+
+                        <h3 id="artifactTitle">
+                            Generated Artifact
+                        </h3>
+
+                    </div>
+
+
+                    <button
+                        class="close-artifact"
+                        onclick="closeArtifact()"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+
+                <!-- Artifact Tabs -->
+
+                <div class="artifact-tabs">
+
+                    <button
+                        id="previewTab"
+                        class="artifact-tab active"
+                        onclick="showArtifactPreview()"
+                    >
+                        Preview
+                    </button>
+
+
+                    <button
+                        id="codeTab"
+                        class="artifact-tab"
+                        onclick="showArtifactCode()"
+                    >
+                        Code
+                    </button>
+
+                </div>
+
+
+                <!-- Artifact Content -->
+
+                <div class="artifact-content">
+
+
+                    <!-- Preview -->
+
+                    <div
+                        id="artifactPreview"
+                        class="artifact-preview"
+                    >
+
+                        <div class="empty-artifact">
+
+                            <div class="empty-artifact-icon">
+                                ✦
+                            </div>
+
+                            <h4>
+                                Your artifact will appear here
+                            </h4>
+
+                            <p>
+                                Ask Lenny to create a strategy,
+                                framework, plan, or document.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Code -->
+
+                    <pre
+                        id="artifactCode"
+                        class="artifact-code hidden"
+                    ></pre>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- =========================================
+     MOBILE OVERLAY
+========================================== -->
+
+<div
+    id="sidebarOverlay"
+    class="sidebar-overlay"
+    onclick="toggleSidebar()"
+></div>
+
+
+<!-- =========================================
+     JAVASCRIPT
+========================================== -->
+
+<script src="app.js"></script>
+
+</body>
+
+</html>
